@@ -37,13 +37,13 @@ Se o repositório remoto já tem arquivos/histórico, prefira clonar com git clo
 ## 4 — Quatro pastas padrão
 Na RAIZ:
 
-    mkdir 00_read, 01_backend, 02_database, 03_front
+    mkdir 00_read, 01_data, 02_back, 03_front
     New-Item 00_read\README.md -ItemType File
-    New-Item 01_backend\README.md -ItemType File
-    New-Item 02_database\README.md -ItemType File
+    New-Item 02_back\README.md -ItemType File
+    New-Item 01_data\README.md -ItemType File
     flutter create --project-name meu_app --platforms android,ios,web,windows 03_front
 
-00_read: documentação e padrões. 01_backend: reservado para servidor próprio apenas se necessário; Supabase já oferece backend. 02_database: migrações SQL, documentação, RLS (não é banco executável local). 03_front: Flutter/Dart. Não crie manualmente os diretórios android, ios, web e windows: flutter create gera os arquivos de plataforma. O Git não registra pastas vazias: deixe README ou .gitkeep.
+00_read: documentação e padrões. 01_data: migrações SQL, documentação, RLS (não é banco executável local). 02_back: reservado para servidor próprio apenas se necessário; Supabase já oferece backend. 03_front: Flutter/Dart. Não crie manualmente os diretórios android, ios, web e windows: flutter create gera os arquivos de plataforma. O Git não registra pastas vazias: deixe README ou .gitkeep.
 
 Adicione .gitignore na raiz para ignorar **/.dart_tool/, **/build/, **/.gradle/, **/local.properties, **/.env, **/.env.*, *.jks, *.keystore, *.p8, arquivos de contas de serviço; preserve o .gitignore gerado no 03_front. Nunca versione senhas, service_role, client secrets ou chaves privadas.
 
@@ -135,7 +135,7 @@ Se pedir identidade: git config --global user.name "SEU NOME" e git config --glo
 3. Authentication → Providers → Google: configurar DEPOIS de criar OAuth no Google Cloud.
 4. Authentication → URL Configuration → Redirect URLs: adicione io.seuapp.app://login-callback/.
 5. Para dados de usuários/famílias, habilite Row Level Security (RLS) e escreva políticas antes de liberar acesso. Auth sozinho não protege tabelas.
-6. Guarde scripts SQL versionados em 02_database/migrations/. NÃO coloque senha de banco ou service_role no Flutter.
+6. Guarde scripts SQL versionados em 01_data/migrations/. NÃO coloque senha de banco ou service_role no Flutter.
 
 ## 9 — Google Cloud OAuth
 1. console.cloud.google.com → criar/selecionar projeto.
